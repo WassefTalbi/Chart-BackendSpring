@@ -32,7 +32,7 @@ private LabelRepository labelRepository ;
     private ChartDatasetRepository chartDatasetRepository;
     @CrossOrigin("*")
 @PostMapping("/config/{id}")
-    public Chart connect_Chart_To_Database(@PathVariable(name ="id") Long id, @RequestBody ConfigDTO configDTO )  {
+    public ResponseEntity<?> connect_Chart_To_Database(@PathVariable(name ="id") Long id, @RequestBody ConfigDTO configDTO )  {
 try{
 
     Chart chart = chartRepository.findById(id).get();
@@ -55,7 +55,7 @@ if("mysql".equals(driverClass)){
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con= DriverManager.getConnection(url,username,password);
     System.out.println("connected successfully to mySql Data Base");
-    return chart;
+    return new ResponseEntity<>(chart,HttpStatus.OK);
 
 }
 
@@ -63,17 +63,17 @@ else if ("oracle".equals(driverClass)){
     Class.forName("oracle.jdbc.driver.OracleDriver");
     Connection con= DriverManager.getConnection(url,username,password);
     System.out.println("connected successfully to oracle Data Base");
-    return chart;
+    return new ResponseEntity<>(chart,HttpStatus.OK);
 }
 else{
-    return null;
+    return new ResponseEntity<>("not yet",HttpStatus.OK);
 }
 
 
 
 
 }catch (Exception e){
-    return null;
+    return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 }
 
 

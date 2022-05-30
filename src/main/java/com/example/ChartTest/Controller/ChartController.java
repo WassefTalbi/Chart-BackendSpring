@@ -112,8 +112,8 @@ return ResponseEntity.ok("add successfully");
         private String indexAxis;
         private int borderRadius ;
         private int base;
-        private Color backgroundColor ;
-        private Color borderColor ;
+        private String backgroundColor ;
+        private String borderColor ;
         private int borderWidth ;
 
     }

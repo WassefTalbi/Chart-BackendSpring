@@ -27,8 +27,8 @@ public class ChartDataset implements Serializable {
     private String indexAxis;
     private int borderRadius ;
     private int base;
-    private Color backgroundColor ;
-    private Color borderColor ;
+    private String backgroundColor ;
+    private String borderColor ;
     private int borderWidth ;
     @OneToMany(mappedBy = "chartDataset" ,cascade = CascadeType.ALL)
     protected Collection<DataPoint> dataPoints;
